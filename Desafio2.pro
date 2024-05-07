@@ -5,6 +5,7 @@ CONFIG -= qt
 
 SOURCES += \
         estacion.cpp \
+        estaciondetransferencia.cpp \
         linea.cpp \
         main.cpp \
         menu.cpp \
@@ -12,6 +13,7 @@ SOURCES += \
 
 HEADERS += \
     estacion.h \
+    estaciondetransferencia.h \
     linea.h \
     menu.h \
     red.h

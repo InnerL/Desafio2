@@ -1,28 +1,47 @@
 #ifndef RED_H
 #define RED_H
-#include <iostream>
 #include <string>
+#include "linea.h" // añadimos la libreria linea para poder crear una nueva linea desde la red
+
 using namespace std;
 
-class red{
+class red {
     string nomRed;
-    string *linea;
-    int cantLinea;
+    linea** lineas;
+    int numLineas;
 
 public:
-    //Constructor-Destructor
-    red(string _nomRed, string *_linea, int _cantLinea) {nomRed = _nomRed; *linea = *_linea; cantLinea = _cantLinea;};
-    red(){};
+    // Constructor
+    red(string _nomRed, int _cantLineas) {
+        nomRed = _nomRed;
+        numLineas = _cantLineas;
+        lineas = new linea*[numLineas];
+        for (int i = 0; i < numLineas; i++) {
+            lineas[i] = nullptr;
+        }
+    }
 
+    // Destructor
+    ~red() {
+        for (int i = 0; i < numLineas; i++) {
+            delete lineas[i];
+        }
+        delete[] lineas;
+    }
 
-    //Metodos
-    void estabecerNombre(string);
-    void agregarLinea();
-    void eliminarLinea();
+    // Métodos set y get
+    void setNomRed(string _nomRed) {
+        nomRed = _nomRed;
+    }
+    string getNomRed() const {
+        return nomRed;
+    }
+
+    // Otros métodos
+    void agregarLinea(linea* nuevaLinea, int indice);
+    void eliminarLinea(int indice);
     int cantLineas();
     int cantEstacionRed();
-
 };
-
 
 #endif // RED_H

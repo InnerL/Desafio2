@@ -1,30 +1,43 @@
 #ifndef LINEA_H
 #define LINEA_H
-#include <iostream>
 #include <string>
+#include "estacion.h" // añadimos estacion para poder añadirlas y eliminarlas desde la linea
+
 using namespace std;
 
-
-class linea{
+class linea {
     string nomLinea;
     string tipoTransporte;
+    estacion** estaciones;
+    int numEstaciones;
 
 public:
-    //Constructor-Destructor
-    linea(string _nomLinea, string _tipoTransporte){ nomLinea = _nomLinea; tipoTransporte = _tipoTransporte;}
-    linea(){}
+    // Constructor
+    linea(string _nomLinea, string _tipoTransporte, int _numEstaciones) {
+        nomLinea = _nomLinea;
+        tipoTransporte = _tipoTransporte;
+        numEstaciones = _numEstaciones;
+        estaciones = new estacion*[numEstaciones];
+        for (int i = 0; i < numEstaciones; i++) {
+            estaciones[i] = nullptr;
+        }
+    }
 
+    // Destructor
+    ~linea() {
+        for (int i = 0; i < numEstaciones; i++) {
+            delete estaciones[i];
+        }
+        delete[] estaciones;
+    }
 
-
-    // Métodos get
+    // Métodos get y set
     string getNomLinea() const {
         return nomLinea;
     }
     string getTipoTransporte() const {
         return tipoTransporte;
     }
-
-    // Métodos set
     void setNomLinea(const string& _nomLinea) {
         nomLinea = _nomLinea;
     }
@@ -32,15 +45,12 @@ public:
         tipoTransporte = _tipoTransporte;
     }
 
-
-    //Metodos
-    void agregarEstacion(string nomEstacion);
-    void eliminarEstacion(string nomEstacion);
-    void editarnomLinea();
+    // Métodos
+    void agregarEstacion(estacion* nuevaEstacion, int indice);
+    void eliminarEstacion(int indice);
+    void editarNomLinea();
     int cantidadEstacionesLinea();
     int calcularTiempo();
-
 };
-
 
 #endif // LINEA_H

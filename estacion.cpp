@@ -1,22 +1,21 @@
 #include "estacion.h"
+#include <iostream>
 
-
-void estacion::eliminarEstacion()
-{
-
+void estacion::editarNomEstacion() {
+    string nuevoNombre;
+    cout << "Ingrese el nuevo nombre para la estacion: ";
+    cin >> nuevoNombre;
+    nomEstacion = nuevoNombre;
+    cout << "Nombre de estacion actualizado correctamente." << endl;
 }
 
-void estacion::editarNomEstacion()
-{
-
-}
-
-int estacion::editarTiempoEstacion()
-{
-    cout<<"Que estacion desea modificar"<<endl;
-    cout<<"Visualizar estaciones de la linea**"<<endl;
-    cout<<"Desea cambiar el tiempo de la anterior(1) o siguiente(2) estacion?"<<endl;
-    //cin>>
-    cout<<"Que tiempo desea poner"<<endl;
-    //cin>>
+void estacion::editarTiempoEstacion() {
+    int nuevoTiempoSig, nuevoTiempoAnt;
+    cout << "Ingrese el nuevo tiempo a la siguiente estacion: ";
+    cin >> nuevoTiempoSig;
+    cout << "Ingrese el nuevo tiempo a la estacion anterior: ";
+    cin >> nuevoTiempoAnt;
+    tiempoSigEstacion = nuevoTiempoSig;
+    tiempoAntEstacion = nuevoTiempoAnt;
+    cout << "Tiempos de estacion actualizados correctamente." << endl;
 }

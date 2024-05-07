@@ -1,120 +1,114 @@
-#include "menu.h"
 #include "red.h"
 #include "linea.h"
 #include "estacion.h"
-red redObj;
-linea lineaObj;
-estacion estacionObj;
+#include <iostream>
 
-string nomEstacion = "Niquia";
+using namespace std;
 
-void opcionRed()
-{
-    int opcion;
-    do{
-        cout<<"Menu de red: Que deseas?"<<endl;
-        cout<<"1. Agregar Linea."<<endl;
-        cout<<"2. Eliminar Linea."<<endl;
-        cout<<"3. Cantidad de lineas."<<endl;
-        cout<<"4. Cantidad de estaciones."<<endl;
-        cout<<"0. Salir"<<endl;
-        cout<<"Ingrese una opcion: "<<endl;
+void mostrarMenuRed(red& redObj) {
+    int opcion, indice;
+    linea* nuevaLinea;
+    do {
+        cout << "Menu de Red: Que deseas?" << endl;
+        cout << "1. Agregar Linea." << endl;
+        cout << "2. Eliminar Linea." << endl;
+        cout << "3. Cantidad de lineas." << endl;
+        cout << "4. Cantidad de estaciones." << endl;
+        cout << "0. Salir" << endl;
+        cout << "Ingrese una opcion: ";
         cin >> opcion;
+
         switch (opcion) {
         case 1:
-            redObj.agregarLinea();
+            // Implementar la función agregarLinea() en la clase red
+            redObj.agregarLinea(nuevaLinea, indice);
             break;
         case 2:
-            redObj.eliminarLinea();
+            // Implementar la función eliminarLinea() en la clase red
+            redObj.eliminarLinea(indice);
             break;
         case 3:
-            redObj.cantLineas();
+            cout << "La red tiene " << redObj.cantLineas() << " lineas." << endl;
             break;
         case 4:
-            redObj.cantEstacionRed();
+            cout << "La red tiene " << redObj.cantEstacionRed() << " estaciones." << endl;
             break;
         case 0:
             break;
         default:
-            cout<<"Opcion invalida. Por favor ingrese una opcion valida."<<endl;
+            cout << "Opcion invalida. Por favor ingrese una opcion valida." << endl;
             break;
         }
-    }while(opcion != 0);
+    } while (opcion != 0);
 }
 
-void opcionLinea()
-{
-    int opcion;
-    do{
-        cout<<"Menu de Linea: Que deseas?"<<endl;
-        cout<<endl<<"Mostrar lista de lineas disponible***\h"<<endl;
-        cout<<"1. Agregar Estacion."<<endl;
-        cout<<"2. Eliminar Estacion."<<endl;
-        cout<<"3. Editar nombre de linea."<<endl;
-        cout<<"4. Cantidad de estaciones."<<endl;
-        cout<<"5. Calcular tiempo entre estaciones."<<endl;
-        cout<<"0. Salir"<<endl;
-        cout<<"Ingrese una opcion: "<<endl;
+void mostrarMenuLinea(linea& lineaObj) {
+    int opcion, indice;
+    estacion *nuevaEstacion;
+    do {
+        cout << "Menu de Linea: Que deseas?" << endl;
+        cout << "1. Agregar Estacion." << endl;
+        cout << "2. Eliminar Estacion." << endl;
+        cout << "3. Editar nombre de linea." << endl;
+        cout << "4. Cantidad de estaciones." << endl;
+        cout << "5. Calcular tiempo entre estaciones." << endl;
+        cout << "0. Salir" << endl;
+        cout << "Ingrese una opcion: ";
         cin >> opcion;
+
         switch (opcion) {
         case 1:
-            lineaObj.agregarEstacion(nomEstacion);
+            // Implementar la función agregarEstacion() en la clase linea
+            lineaObj.agregarEstacion(nuevaEstacion, indice);
             break;
         case 2:
-            lineaObj.eliminarEstacion(nomEstacion);
+            // Implementar la función eliminarEstacion() en la clase linea
+            lineaObj.eliminarEstacion(indice);
             break;
         case 3:
-            lineaObj.editarnomLinea();
+            // Implementar la función editarNomLinea() en la clase linea
+            lineaObj.editarNomLinea();
             break;
         case 4:
-            lineaObj.cantidadEstacionesLinea();
+            cout << "La linea tiene " << lineaObj.cantidadEstacionesLinea() << " estaciones." << endl;
             break;
         case 5:
+            // Implementar la función calcularTiempo() en la clase linea
             lineaObj.calcularTiempo();
             break;
         case 0:
             break;
         default:
-            cout<<"Opcion invalida. Por favor ingrese una opcion valida."<<endl;
+            cout << "Opcion invalida. Por favor ingrese una opcion valida." << endl;
             break;
         }
-    }while(opcion != 0);
+    } while (opcion != 0);
 }
 
-void opcionEstacion()
-{
+void mostrarMenuEstacion(estacion& estacionObj) {
     int opcion;
-    int opcLinea;
-
-    do{
-        cout<<"Menu de Estacion:"<<endl;
-        cout<<"Escoja la linea que desea ver o 0 para salir:"<<endl;
-        cout<<"Visualizar lineas**"<<endl;
-        cin>>opcLinea;
-        if(opcLinea==0) break;
-        cout<<"Menu de Estacion:"<<endl;
-        cout<<"Visualizar estaciones de la linea**"<<endl;
-        cout<<"1. Editar Nombre de la estacion."<<endl;
-        cout<<"2. Editar tiempo entre las estaciones."<<endl;
-        cout<<"0. Salir"<<endl;
-        cout<<"Ingrese una opcion: "<<endl;
+    do {
+        cout << "Menu de Estacion:" << endl;
+        cout << "1. Editar Nombre de la estacion." << endl;
+        cout << "2. Editar tiempo entre las estaciones." << endl;
+        cout << "0. Salir" << endl;
+        cout << "Ingrese una opcion: ";
         cin >> opcion;
+
         switch (opcion) {
         case 1:
+            // Implementar la función editarNomEstacion() en la clase estacion
             estacionObj.editarNomEstacion();
             break;
         case 2:
+            // Implementar la función editarTiempoEstacion() en la clase estacion
             estacionObj.editarTiempoEstacion();
             break;
         case 0:
             break;
         default:
-            cout<<"Opcion invalida. Por favor ingrese una opcion valida."<<endl;
+            cout << "Opcion invalida. Por favor ingrese una opcion valida." << endl;
             break;
         }
-    }while(opcion != 0);}
-
-void VisualizarMetro()
-{
-    cout<<"En mantenimiento"<<endl;
+    } while (opcion != 0);
 }

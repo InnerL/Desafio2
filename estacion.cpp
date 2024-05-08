@@ -1,7 +1,7 @@
 #include "estacion.h"
 #include <iostream>
 
-void estacion::editarNomEstacion() {
+void estacion::editarnomEstacion() {
     string nuevoNombre;
     cout << "Ingrese el nuevo nombre para la estacion: ";
     cin >> nuevoNombre;
@@ -12,10 +12,8 @@ void estacion::editarNomEstacion() {
 void estacion::editarTiempoEstacion() {
     int nuevoTiempoSig, nuevoTiempoAnt;
     cout << "Ingrese el nuevo tiempo a la siguiente estacion: ";
-    cin >> nuevoTiempoSig;
-    cout << "Ingrese el nuevo tiempo a la estacion anterior: ";
-    cin >> nuevoTiempoAnt;
+    cin >> nuevoTiempoSig;   
     tiempoSigEstacion = nuevoTiempoSig;
-    tiempoAntEstacion = nuevoTiempoAnt;
     cout << "Tiempos de estacion actualizados correctamente." << endl;
 }
+

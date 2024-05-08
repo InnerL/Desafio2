@@ -6,28 +6,32 @@
 using namespace std;
 
 class red {
+public:
     string nomRed;
     linea** lineas;
-    int numLineas;
+    // ID(numLineas)int - Nombre String - tipotransporte
+    int cantLineas;
 
 public:
     // Constructor
-    red(string _nomRed, int _cantLineas) {
-        nomRed = _nomRed;
-        numLineas = _cantLineas;
-        lineas = new linea*[numLineas];
-        for (int i = 0; i < numLineas; i++) {
+    red(int _cantLineas) {
+        cantLineas = _cantLineas;
+        lineas = new linea*[cantLineas];
+        for (int i = 0; i < cantLineas; i++) {
             lineas[i] = nullptr;
         }
     }
+    red(){}
 
     // Destructor
     ~red() {
-        for (int i = 0; i < numLineas; i++) {
+        /*for (int i = 0; i < cantLineas(); i++) {
             delete lineas[i];
-        }
+        }*/
         delete[] lineas;
     }
+
+
 
     // Métodos set y get
     void setNomRed(string _nomRed) {
@@ -38,10 +42,10 @@ public:
     }
 
     // Otros métodos
-    void agregarLinea(linea* nuevaLinea, int indice);
+    void agregarLinea();
     void eliminarLinea(int indice);
-    int cantLineas();
     int cantEstacionRed();
+    void imprimirListaLineas();
 };
 
 #endif // RED_H

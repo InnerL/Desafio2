@@ -1,11 +1,11 @@
-#include "red.h"
-#include "linea.h"
-#include "estacion.h"
-#include <iostream>
+#include "menu.h"
 
-using namespace std;
+red redObj; // Crear un objeto de la clase red
+linea lineaObj; // Crear un objeto de la clase linea
+estacion estacionObj; // Crear un objeto de la clase estacion
 
-void mostrarMenuRed(red& redObj) {
+
+void mostrarMenuRed() {
     int opcion, indice;
     linea* nuevaLinea;
     do {
@@ -21,14 +21,14 @@ void mostrarMenuRed(red& redObj) {
         switch (opcion) {
         case 1:
             // Implementar la función agregarLinea() en la clase red
-            redObj.agregarLinea(nuevaLinea, indice);
+            redObj.agregarLinea();
             break;
         case 2:
             // Implementar la función eliminarLinea() en la clase red
             redObj.eliminarLinea(indice);
             break;
         case 3:
-            cout << "La red tiene " << redObj.cantLineas() << " lineas." << endl;
+           // cout << "La red tiene " << redObj.cantLineas() << " lineas." << endl;
             break;
         case 4:
             cout << "La red tiene " << redObj.cantEstacionRed() << " estaciones." << endl;
@@ -42,10 +42,16 @@ void mostrarMenuRed(red& redObj) {
     } while (opcion != 0);
 }
 
-void mostrarMenuLinea(linea& lineaObj) {
-    int opcion, indice;
-    estacion *nuevaEstacion;
+void mostrarMenuLinea() {
+    linea linea1(1, "Linea 1", "Metro", 3);
+    std::cout << "Nombre de la linea: " << linea1.getNomLinea() << std::endl;
+    std::cout << "Tipo de transporte: " << linea1.getTipoTransporte() << std::endl;
+    std::cout << "Numero de estaciones: " << linea1.getNumestacions() << std::endl;
+    int opcion, indice;    
     do {
+        cout << "Menu de Linea: Que deseas?" << endl;
+        cout <<"lista de todas las lineas"<<endl;
+        cout <<"A que linea desea ingresar"<<endl;
         cout << "Menu de Linea: Que deseas?" << endl;
         cout << "1. Agregar Estacion." << endl;
         cout << "2. Eliminar Estacion." << endl;
@@ -59,7 +65,7 @@ void mostrarMenuLinea(linea& lineaObj) {
         switch (opcion) {
         case 1:
             // Implementar la función agregarEstacion() en la clase linea
-            lineaObj.agregarEstacion(nuevaEstacion, indice);
+           // lineaObj.agregarEstacion((&estacionA);
             break;
         case 2:
             // Implementar la función eliminarEstacion() en la clase linea
@@ -70,7 +76,7 @@ void mostrarMenuLinea(linea& lineaObj) {
             lineaObj.editarNomLinea();
             break;
         case 4:
-            cout << "La linea tiene " << lineaObj.cantidadEstacionesLinea() << " estaciones." << endl;
+            cout << "La linea tiene " << lineaObj.getNumestacions() << " estaciones." << endl;
             break;
         case 5:
             // Implementar la función calcularTiempo() en la clase linea
@@ -85,7 +91,7 @@ void mostrarMenuLinea(linea& lineaObj) {
     } while (opcion != 0);
 }
 
-void mostrarMenuEstacion(estacion& estacionObj) {
+void mostrarMenuEstacion() {
     int opcion;
     do {
         cout << "Menu de Estacion:" << endl;
@@ -98,7 +104,7 @@ void mostrarMenuEstacion(estacion& estacionObj) {
         switch (opcion) {
         case 1:
             // Implementar la función editarNomEstacion() en la clase estacion
-            estacionObj.editarNomEstacion();
+            estacionObj.editarnomEstacion();
             break;
         case 2:
             // Implementar la función editarTiempoEstacion() en la clase estacion

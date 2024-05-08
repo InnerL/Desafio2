@@ -1,12 +1,17 @@
 #ifndef MENU_H
 #define MENU_H
 #include "red.h"
+#include "linea.h"
+#include "estacion.h"
+#include <iostream>
 
 using namespace std;
 
-void mostrarMenuRed(red& redObj);
-void mostrarMenuLinea(linea& lineaObj);
-void mostrarMenuEstacion(estacion& estacionObj);
+
+
+void mostrarMenuRed();
+void mostrarMenuLinea();
+void mostrarMenuEstacion();
 void opcionRed();
 void opcionLinea();
 void opcionEstacion();

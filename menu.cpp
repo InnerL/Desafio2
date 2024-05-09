@@ -1,13 +1,13 @@
 #include "menu.h"
 
-red redObj; // Crear un objeto de la clase red
+red redObj(0); // Crear un objeto de la clase red
 linea lineaObj; // Crear un objeto de la clase linea
 estacion estacionObj; // Crear un objeto de la clase estacion
 
 
+
 void mostrarMenuRed() {
-    int opcion, indice;
-    linea* nuevaLinea;
+    int opcion;
     do {
         cout << "Menu de Red: Que deseas?" << endl;
         cout << "1. Agregar Linea." << endl;
@@ -25,10 +25,10 @@ void mostrarMenuRed() {
             break;
         case 2:
             // Implementar la función eliminarLinea() en la clase red
-            redObj.eliminarLinea(indice);
+            redObj.eliminarLinea();
             break;
         case 3:
-           // cout << "La red tiene " << redObj.cantLineas() << " lineas." << endl;
+            cout << "La red tiene " << redObj.cantidadLineas() << " lineas." << endl;
             break;
         case 4:
             cout << "La red tiene " << redObj.cantEstacionRed() << " estaciones." << endl;
@@ -42,16 +42,13 @@ void mostrarMenuRed() {
     } while (opcion != 0);
 }
 
-void mostrarMenuLinea() {
-    linea linea1(1, "Linea 1", "Metro", 3);
-    std::cout << "Nombre de la linea: " << linea1.getNomLinea() << std::endl;
-    std::cout << "Tipo de transporte: " << linea1.getTipoTransporte() << std::endl;
-    std::cout << "Numero de estaciones: " << linea1.getNumestacions() << std::endl;
-    int opcion, indice;    
+void mostrarMenuLinea() {    
+    int opcion;
+    int selecEsta=0;
+    string nuevoNombre;
     do {
-        cout << "Menu de Linea: Que deseas?" << endl;
-        cout <<"lista de todas las lineas"<<endl;
-        cout <<"A que linea desea ingresar"<<endl;
+        cout << "Menu de Linea:" << endl;
+        linea* selec = redObj.mostrarLineasYSeleccionar();
         cout << "Menu de Linea: Que deseas?" << endl;
         cout << "1. Agregar Estacion." << endl;
         cout << "2. Eliminar Estacion." << endl;
@@ -65,18 +62,21 @@ void mostrarMenuLinea() {
         switch (opcion) {
         case 1:
             // Implementar la función agregarEstacion() en la clase linea
-           // lineaObj.agregarEstacion((&estacionA);
+            redObj.agregarEstacionesALinea(selec);
             break;
         case 2:
-            // Implementar la función eliminarEstacion() en la clase linea
-            lineaObj.eliminarEstacion(indice);
+            selecEsta = selec->mostrarEstacionesYSeleccionar();
+            selec->eliminarEstacion(selecEsta);
             break;
         case 3:
-            // Implementar la función editarNomLinea() en la clase linea
+            selecEsta = selec->mostrarEstacionesYSeleccionar();
+            cout<<"Ingrese el nuevo nombre de la estacion: ";
+            cin>>nuevoNombre;
+            selec->editarNombreEstacion(selecEsta, nuevoNombre);
             lineaObj.editarNomLinea();
             break;
         case 4:
-            cout << "La linea tiene " << lineaObj.getNumestacions() << " estaciones." << endl;
+            selec->listaEstacion();
             break;
         case 5:
             // Implementar la función calcularTiempo() en la clase linea

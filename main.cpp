@@ -10,14 +10,26 @@ red objred(0);
 
 int main() {
 
+    string nuevoNombre;
 
     objred.agregarLinea();
     objred.agregarLinea();
+    objred.agregarLinea();
+    objred.imprimirListaLineas();
+    linea* selec = objred.mostrarLineasYSeleccionar();
+    selec->listaEstacion();
+    int selecEsta = selec->mostrarEstacionesYSeleccionar();
+    cout<<"Ingrese el nuevo nombre de la estacion: ";
+    cin>>nuevoNombre;
+    selec->editarNombreEstacion(selecEsta, nuevoNombre);
+
+
     objred.imprimirListaLineas();
 
 
 
-    linea linea1(0, "Linea A", "Metro", 0);
+
+    //linea linea1(0, "Linea A", "Metro", 0);
 
 
     // Agregar estacions a la línea
@@ -65,7 +77,9 @@ int main() {
     // Acceder a la información de las estacions
 
 
-        cout << "estacions de la linea " << linea1.nomLinea << ":" << endl;
+    /*
+
+    cout << "estacions de la linea " << linea1.nomLinea << ":" << endl;
         for (int i = 0; i < linea1.numestacions; ++i) {
             cout << "ID: " << linea1.estacions[i]->idEstacion << ", Nombre: " << linea1.estacions[i]->nomEstacion<< ", TipoTrans: "<<linea1.tipoTransporte<< endl;
         }
@@ -73,6 +87,9 @@ int main() {
     for (int i = 0; i < objred.cantLineas; ++i) {
         cout << "ID: " <<  objred.lineas[i]->idLinea << ", Nombre: " << objred.lineas[i]->nomLinea << endl;
     }
+*/
+
+
     /*
     int opcion;
     do {

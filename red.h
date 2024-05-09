@@ -25,9 +25,9 @@ public:
 
     // Destructor
     ~red() {
-        /*for (int i = 0; i < cantLineas(); i++) {
+        for (int i = 0; i < cantLineas; i++) {
             delete lineas[i];
-        }*/
+        }
         delete[] lineas;
     }
 
@@ -40,12 +40,24 @@ public:
     string getNomRed() const {
         return nomRed;
     }
+    void setcantLineas(int _cantLineas) {
+        cantLineas = _cantLineas;
+    }
+    int getcantLineas() const {
+        return cantLineas;
+    }
 
     // Otros métodos
     void agregarLinea();
-    void eliminarLinea(int indice);
+    void eliminarLinea();
     int cantEstacionRed();
+    int cantidadLineas();
     void imprimirListaLineas();
+    linea*  mostrarLineasYSeleccionar();
+    void agregarEstacionesALinea(linea* lineaSeleccionada);
+    //Linea
+
+    void setCantLineas(int newCantLineas);
 };
 
 #endif // RED_H

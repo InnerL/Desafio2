@@ -18,6 +18,22 @@ public:
 
 public:
     // Constructor
+    linea(int _idLinea,string _nomLinea, string _tipoTransporte, int _numestacions) {
+        idLinea = _idLinea;
+        nomLinea = _nomLinea;
+        tipoTransporte = _tipoTransporte;
+        numestacions = _numestacions;
+        int a = _numestacions-1;
+        estacions = new estacion*[numestacions];
+        for (int e = 0; e < numestacions; e++) {
+            estacion newEstacion = agregarEstacionC(e, a);
+            estacions[e] = new estacion(newEstacion);
+        }
+        // Creamos una nueva estación directamente en el constructor de la línea
+        //estacions[0] = new estacion(0, nombreEstacin, tiempoSigEstacion, esTransferencia);
+
+    }
+
     linea(string _nomLinea, string _tipoTransporte, int _numestacions) {
         nomLinea = _nomLinea;
         tipoTransporte = _tipoTransporte;
@@ -26,16 +42,8 @@ public:
         for (int i = 0; i < numestacions; i++) {
             estacions[i] = nullptr;
         }
-    }
-    linea(int _idLinea,string _nomLinea, string _tipoTransporte, int _numestacions) {
-        idLinea = _idLinea;
-        nomLinea = _nomLinea;
-        tipoTransporte = _tipoTransporte;
-        numestacions = _numestacions;
-        estacions = new estacion*[numestacions];
-        for (int i = 0; i < numestacions; i++) {
-            estacions[i] = nullptr;
-        }
+
+
     }
 
     linea(){}
@@ -52,13 +60,13 @@ public:
 
 
     // Métodos get y set
-    string getNomLinea() const {
+    string getNomLinea(){
         return nomLinea;
     }
-    string getTipoTransporte() const {
+    string getTipoTransporte(){
         return tipoTransporte;
     }
-    int getNumestacions() const {
+    int getnumestacions(){
         return numestacions;
     }
 
@@ -74,26 +82,21 @@ public:
     {
         numestacions = newNumestacions;
     }
-    /*
-    void getLineas(linea** lineas){
-        for (int i = 0; i < numLineas; ++i) {
-            // Acceder a los elementos de la linea[i] usando indirección doble
-            // Por ejemplo, para acceder al nombre de la línea
-            std::string nombreLinea = lineas[i]->getNomLinea();
 
-            // Haz lo que necesites con la información de la línea...
-        }
-    };
-*/
+
+
     // Métodos
     void agregarEstacion(estacion* nuevaEstacion);
-//    void agregarEstacion(estacion* nuevaEstacion, int indice);
-    void eliminarEstacion(int indice);
     void editarNomLinea();
-    int cantidadestacionsLinea();
+    int cantidadEstacionsLinea();
     int calcularTiempo();
 
-    void agregarEstacion1(estacion* nuevaEstacion);
+    estacion agregarEstacionC(int e, int a);
+    int mostrarEstacionesYSeleccionar();
+    void eliminarEstacion(int seleccion);
+
+    void editarNombreEstacion(int indice, string nuevoNombre);
+    void listaEstacion();
 
 };
 

@@ -17,7 +17,6 @@ void red::agregarLinea() {
     string tipoTransporte="";
     int numestacions=0, a=0;
 
-
     cout << "Ingrese el nombre de la linea: ";
     cin >> nombreLinea;
     cout << "Ingrese el tipo de transporte de la linea: ";
@@ -34,18 +33,14 @@ void red::agregarLinea() {
     // Crear un nuevo objeto de la clase línea con los detalles proporcionados
     linea* nuevaLinea = new linea(idLinea, nombreLinea, tipoTransporte, numestacions);
 
-    // Agregar estaciones a la nueva línea
-
-    //fnc
-
-    // Agregar la nueva línea al arreglo de líneas de la red
-    // Primero, encontramos un espacio disponible en el arreglo de líneas
+    //Encontramos un espacio disponible en el arreglo de líneas
     int indice = 0;
     while (indice < cantLineas && lineas[indice] != nullptr) {
         indice++;
     }
 
     cantLineas++;
+    setcantLineas(cantLineas);
 
     // Si encontramos un espacio disponible, agregamos la nueva línea
     if (indice < cantLineas+1) {
@@ -79,8 +74,6 @@ void red::eliminarLinea() {
     } else {
         cout << "No se puede eliminar la linea. Asegurate de que haya exactamente una linea registrada en la red." << endl;
     }
-
-
 }
 
 int red::cantEstacionRed() {
@@ -96,8 +89,10 @@ int red::cantEstacionRed() {
 int red::cantidadLineas()
 {
     int contadorLineas = 0;
+    cout << "Lista de lineas en la red " << getNomRed()<< ":" << endl;
     for (int i = 0; i < cantLineas; ++i) {
         if (lineas[i] != nullptr) {
+            cout << i + 1 << ". " << lineas[i]->getNomLinea() << endl;
             contadorLineas++;
         }
     }
@@ -106,7 +101,9 @@ int red::cantidadLineas()
 
 void red::imprimirListaLineas(){
     cout << "Lista de lineas y estaciones en la red:" << endl;
-    for (int i = 0; i < cantLineas; ++i) {
+    int cant=0;
+    cant = getcantLineas();
+    for (int i = 0; i < cant; ++i) {
         if (lineas[i] != nullptr) {
             cout << "Linea " << i + 1 << ": " << lineas[i]->getNomLinea() << endl;
             cout << "Tipo de transporte: " << lineas[i]->getTipoTransporte() << endl;

@@ -1,8 +1,7 @@
 #ifndef LINEA_H
 #define LINEA_H
 #include <string>
-#include "estacion.h" // añadimos estacion para poder añadirlas y eliminarlas desde la linea
-#include <iostream>
+#include "estacion.h"
 
 
 using namespace std;
@@ -13,7 +12,7 @@ public:
     string nomLinea;
     string tipoTransporte;
     estacion** estacions;
-    int numestacions;
+    int numestacions=0;
 
 
 public:
@@ -29,8 +28,7 @@ public:
             estacion newEstacion = agregarEstacionC(e, a);
             estacions[e] = new estacion(newEstacion);
         }
-        // Creamos una nueva estación directamente en el constructor de la línea
-        //estacions[0] = new estacion(0, nombreEstacin, tiempoSigEstacion, esTransferencia);
+
 
     }
 
@@ -89,7 +87,7 @@ public:
     void agregarEstacion(estacion* nuevaEstacion);
     void editarNomLinea();
     int cantidadEstacionsLinea();
-    int calcularTiempo();
+    int calcularTiempo(int indiceEstacion1, int indiceEstacion2);
 
     estacion agregarEstacionC(int e, int a);
     int mostrarEstacionesYSeleccionar();

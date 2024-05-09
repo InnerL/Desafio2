@@ -50,11 +50,7 @@ public:
     }
     void setEsTransferencia(bool _esTransferencia) {
         esTransferencia = _esTransferencia;
-    }
-
-    void eliminarEstacion();
-    void editarTiempoEstacion();
-    void editarnomEstacion();
+    }   
 };
 
 #endif // ESTACION_H

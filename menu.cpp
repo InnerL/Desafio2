@@ -1,10 +1,11 @@
 #include "menu.h"
+#include <limits>
+#include <sstream>
+
 
 red redObj(0); // Crear un objeto de la clase red
 linea lineaObj; // Crear un objeto de la clase linea
 estacion estacionObj; // Crear un objeto de la clase estacion
-
-
 
 void mostrarMenuRed() {
     int opcion;
@@ -14,30 +15,38 @@ void mostrarMenuRed() {
         cout << "2. Eliminar Linea." << endl;
         cout << "3. Cantidad de lineas." << endl;
         cout << "4. Cantidad de estaciones." << endl;
+        cout << "5. Visualizar Red." << endl;
         cout << "0. Salir" << endl;
         cout << "Ingrese una opcion: ";
-        cin >> opcion;
-
+        cin>>opcion;
         switch (opcion) {
         case 1:
-            // Implementar la función agregarLinea() en la clase red
+            //agregarLinea() en la clase red
             redObj.agregarLinea();
             break;
         case 2:
-            // Implementar la función eliminarLinea() en la clase red
+            //función eliminarLinea() en la clase red
             redObj.eliminarLinea();
             break;
         case 3:
-            cout << "La red tiene " << redObj.cantidadLineas() << " lineas." << endl;
+            //Lista de lineas
+            cout <<redObj.cantidadLineas() <<" Son las estaciones que contiene la red"<<endl;
             break;
         case 4:
+            //Cantidad de estaciones en toda la red
             cout << "La red tiene " << redObj.cantEstacionRed() << " estaciones." << endl;
+            break;
+        case 5:
+            redObj.imprimirListaLineas();
             break;
         case 0:
             break;
         default:
             cout << "Opcion invalida. Por favor ingrese una opcion valida." << endl;
             break;
+
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     } while (opcion != 0);
 }
@@ -45,6 +54,8 @@ void mostrarMenuRed() {
 void mostrarMenuLinea() {    
     int opcion;
     int selecEsta=0;
+    int indiceEstacion1=0;
+    int indiceEstacion2=0;
     string nuevoNombre;
     do {
         cout << "Menu de Linea:" << endl;
@@ -52,7 +63,7 @@ void mostrarMenuLinea() {
         cout << "Menu de Linea: Que deseas?" << endl;
         cout << "1. Agregar Estacion." << endl;
         cout << "2. Eliminar Estacion." << endl;
-        cout << "3. Editar nombre de linea." << endl;
+        cout << "3. Editar nombre de estacion." << endl;
         cout << "4. Cantidad de estaciones." << endl;
         cout << "5. Calcular tiempo entre estaciones." << endl;
         cout << "0. Salir" << endl;
@@ -80,41 +91,19 @@ void mostrarMenuLinea() {
             break;
         case 5:
             // Implementar la función calcularTiempo() en la clase linea
-            lineaObj.calcularTiempo();
+            cout<<"Seleccione la estacion inicial";
+            indiceEstacion1 = selec->mostrarEstacionesYSeleccionar();
+            cout<<"Seleccione la estacion final";
+            indiceEstacion2 = selec->mostrarEstacionesYSeleccionar();
+            lineaObj.calcularTiempo(indiceEstacion1,indiceEstacion2);
             break;
         case 0:
             break;
         default:
             cout << "Opcion invalida. Por favor ingrese una opcion valida." << endl;
             break;
-        }
-    } while (opcion != 0);
-}
-
-void mostrarMenuEstacion() {
-    int opcion;
-    do {
-        cout << "Menu de Estacion:" << endl;
-        cout << "1. Editar Nombre de la estacion." << endl;
-        cout << "2. Editar tiempo entre las estaciones." << endl;
-        cout << "0. Salir" << endl;
-        cout << "Ingrese una opcion: ";
-        cin >> opcion;
-
-        switch (opcion) {
-        case 1:
-            // Implementar la función editarNomEstacion() en la clase estacion
-            estacionObj.editarnomEstacion();
-            break;
-        case 2:
-            // Implementar la función editarTiempoEstacion() en la clase estacion
-            estacionObj.editarTiempoEstacion();
-            break;
-        case 0:
-            break;
-        default:
-            cout << "Opcion invalida. Por favor ingrese una opcion valida." << endl;
-            break;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     } while (opcion != 0);
 }

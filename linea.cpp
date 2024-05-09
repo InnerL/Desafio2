@@ -2,12 +2,9 @@
 #include "estacion.h"
 #include <iostream>
 #include <string>
-
-
 int indice = 0;
 
 estacion linea::agregarEstacionC(int e,int a){
-    int idEstacion = e;
     string nombreEstacin;
     int tiempoSigEstacion=0;
     bool esTransferencia=false;
@@ -46,46 +43,6 @@ void linea::agregarEstacion(estacion* nuevaEstacion) {
 }
 
 
-
-/*
-void linea::agregarEstacion(estacion* nuevaEstacion, int indice) {
-    if (indice >= 0 && indice < numestacions) {
-        estacions[indice] = nuevaEstacion;
-    } else {
-        std::cout << "Índice de estación fuera de rango." << std::endl;
-    }
-}
-*/
-/*
-void linea::agregarEstacion(linea& linea) {
-
-    if (indice >= 0 && indice <= numestacions) {
-        estacion** nuevoArreglo = new estacion*[numestacions + 1];
-
-        for (int i = 0; i < indice; i++) {
-            nuevoArreglo[i] = estacions[i];
-        }
-
-        nuevoArreglo[indice] = nuevaEstacion;
-
-        for (int i = indice; i < numestacions; i++) {
-            nuevoArreglo[i + 1] = estacions[i];
-        }
-
-        delete[] estacions;
-        estacions = nuevoArreglo;
-        numestacions++;
-
-        cout << "Estacion agregada correctamente." << endl;
-    } else {
-        cout << "Indice de estacion invalido." << endl;
-    }
-
-}*/
-
-
-
-
 void linea::editarNomLinea() {
     string nuevoNombre;
     cout << "Ingrese el nuevo nombre para la linea: ";
@@ -105,12 +62,26 @@ int linea::cantidadEstacionsLinea()  {
 }
 
 
-int linea::calcularTiempo() {
-    int tiempoTotal = 0;
-    for (int i = 0; i < numestacions - 1; i++) {
-        tiempoTotal += estacions[i]->getTiempoSigEstacion();
+int linea::calcularTiempo(int indiceEstacion1, int indiceEstacion2) {
+    if (indiceEstacion1 < 0 || indiceEstacion1 >= numestacions || indiceEstacion2 < 0 || indiceEstacion2 >= numestacions) {
+        cout << "Los índices de estaciones proporcionados son inválidos." << endl;
+        return -1; // Valor de retorno indicando error
     }
-    return tiempoTotal;
+
+    int distanciaTotal = 0;
+    int indiceInicio = min(indiceEstacion1, indiceEstacion2);
+    int indiceFin = max(indiceEstacion1, indiceEstacion2);
+
+    for (int i = indiceInicio; i < indiceFin; ++i) {
+        if (estacions[i] != nullptr && estacions[i + 1] != nullptr) {
+            distanciaTotal += estacions[i]->getTiempoSigEstacion();
+        } else {
+            cout << "Una o ambas estaciones seleccionadas no tienen tiempo hacia la siguiente estación." << endl;
+            return -1; // Valor de retorno indicando error
+        }
+    }
+
+    return distanciaTotal;
 }
 
 int linea::mostrarEstacionesYSeleccionar(){

@@ -1,7 +1,7 @@
 #ifndef RED_H
 #define RED_H
 #include <string>
-#include "linea.h" // añadimos la libreria linea para poder crear una nueva linea desde la red
+#include "linea.h"
 
 using namespace std;
 
@@ -9,8 +9,7 @@ class red {
 public:
     string nomRed;
     linea** lineas;
-    // ID(numLineas)int - Nombre String - tipotransporte
-    int cantLineas;
+    int cantLineas=0;
 
 public:
     // Constructor
@@ -37,13 +36,13 @@ public:
     void setNomRed(string _nomRed) {
         nomRed = _nomRed;
     }
-    string getNomRed() const {
+    string getNomRed(){
         return nomRed;
     }
     void setcantLineas(int _cantLineas) {
         cantLineas = _cantLineas;
     }
-    int getcantLineas() const {
+    int getcantLineas(){
         return cantLineas;
     }
 
@@ -55,9 +54,7 @@ public:
     void imprimirListaLineas();
     linea*  mostrarLineasYSeleccionar();
     void agregarEstacionesALinea(linea* lineaSeleccionada);
-    //Linea
 
-    void setCantLineas(int newCantLineas);
 };
 
 #endif // RED_H
